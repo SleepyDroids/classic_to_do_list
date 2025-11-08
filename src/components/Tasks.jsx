@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Tasks({ tasks, handleOnChange, deleteTask, setTaskToEdit }) {
+export default function Tasks({ tasks, handleOnChange, deleteTask, onEditClick }) {
 
   return (
     <ul className="tasks" role="list">
@@ -16,7 +16,7 @@ export default function Tasks({ tasks, handleOnChange, deleteTask, setTaskToEdit
               onChange={() => handleOnChange(t.id)}
             />
             <span className={t.completed ? "completed" : null}>{t.text}</span>
-            <button className="edit-btn" onClick={() => setTaskToEdit(t.id)}>🖊️</button>
+            <button className="edit-btn" onClick={() => onEditClick(t.id, t.text)}>🖊️</button>
             {/*  when this specific button is clicked, call deleteTask and pass in the id for this particular task (t.id) */}
             <button
               className="del-btn"

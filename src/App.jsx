@@ -60,9 +60,10 @@ function App() {
     }
   }
 
-  // function toggleEdit() {
-  //   console.log("clicked");
-  // }
+  function onEditClick(id, text) {
+    setTaskToEdit(id);
+    setEditText(text);
+  }
 
   function deleteTask(id) {
     // use .filter to create a *new* array of tasks
@@ -99,7 +100,7 @@ function App() {
         <Tasks
           tasks={tasks}
           taskToEdit={taskToEdit}
-          setTaskToEdit={setTaskToEdit}
+          onEditClick={onEditClick}
           deleteTask={deleteTask}
           handleOnChange={completeTask}
         />
