@@ -14,23 +14,23 @@ Requirements:
 5) New todos should be added to the top of the list visually; the oldest todos should be at the bottom.
 */
 
-// FILLER DATA
+// FILLER DATA *******
 import data from "./data/tasks.js";
 
-// COMPONENTS
+// COMPONENTS *******
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 
 function App() {
-  // STATE MANAGEMENT
+  // STATE MANAGEMENT *******
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState(data);
-
   // setting up the task I want to edit, initiate as null since it is the first render of tasks (taskToEdit will be the specific task's id)
   const [taskToEdit, setTaskToEdit] = useState(null);
   // setting up state to keep track of the editText input (editText will be the e.target.value)
   const [editText, setEditText] = useState("");
 
+  // HANDLERS AND HELPER FUNCTIONS *******
   function handleInputChange(e) {
     // Using a controlled component to use the value from the Add Task input
     setNewTask(e.target.value);
@@ -76,13 +76,13 @@ function App() {
 
   function completeTask(id) {
     const complete = tasks.map((task) => {
-      // console.log(task.completed)
       return task.id == id ? { ...task, completed: !task.completed } : task;
     });
 
     setTasks(complete);
   }
 
+  // JSX AND ELEMENTS *******
   return (
     <>
       <Header />
