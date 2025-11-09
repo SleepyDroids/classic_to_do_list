@@ -5,7 +5,6 @@ export default function Tasks({ tasks, handleOnChange, deleteTask, onEditClick }
   return (
     <ul className="tasks" role="list">
       {tasks.map((t) => {
-        // console.log(`This is my new task: ${t} at this index of ${i}`)
         return (
           <li key={t.id}>
             <input
@@ -32,6 +31,3 @@ export default function Tasks({ tasks, handleOnChange, deleteTask, onEditClick }
     </ul>
   );
 }
-
-
-// onClick={() => setTaskToEdit(t.id)}
