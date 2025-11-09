@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
+* {
+    box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,22 +14,40 @@ body {
   font-style: normal;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: space-between;
+
+  background-color: #E1EFE6;
+}
+
+.container {
+    margin-top: 1.3rem;
 }
 
 header {
   width: 100%;
   text-align: center;
-  background-color: aqua;
+  background-color: #EFCB68;
+}
+
+header > h1 {
+    font-size: 1.6rem;
+    padding: .8rem;
 }
 
 .container {
-  width: 600px;
   margin-inline: auto;
 }
 
 button {
   cursor: pointer;
+  border: none;
+  padding: .7rem;
+  margin: .6rem;
+  background-color: #C8D0CC;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 .completed {
@@ -46,12 +68,11 @@ li {
   display: flex;
   align-items: center;
   list-style-type: none;
-  padding: .5rem;
-  margin: .4rem 0;
+  padding: 0.3rem;
+  margin: 0.2rem 0;
   font-size: 1.2rem;
   font-weight: 500;
-  width: 100%;
-  background-color: hsl(160, 68%, 37%);
+  width: 600px;
 }
 
 li > span {
