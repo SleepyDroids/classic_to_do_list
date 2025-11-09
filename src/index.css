@@ -39,14 +39,19 @@ button {
 input[type="text"] {
   font-family: inherit;
   padding: 0.7rem;
+  width: 400px;
 }
 
 li {
   display: flex;
   align-items: center;
   list-style-type: none;
-  padding: 0;
+  padding: .5rem;
+  margin: .4rem 0;
   font-size: 1.2rem;
+  font-weight: 500;
+  width: 100%;
+  background-color: hsl(160, 68%, 37%);
 }
 
 li > span {
