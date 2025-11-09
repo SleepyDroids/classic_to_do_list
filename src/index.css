@@ -1,3 +1,7 @@
 .completed {
     text-decoration: line-through;
 }
+
+.visibilty {
+    display: none;
+}

@@ -57,12 +57,13 @@ function App() {
     if (editText.trim() !== "") {
       setTasks(editedTasks);
       setEditText("");
+      setTaskToEdit(null);
     }
   }
 
   function onEditClick(id, text) {
-    setTaskToEdit(id);
-    setEditText(text);
+    setTaskToEdit(id); // remember which task is being edited
+    setEditText(text); // preload the edit input with that specific task's text
   }
 
   function deleteTask(id) {
@@ -99,19 +100,22 @@ function App() {
 
         <Tasks
           tasks={tasks}
-          taskToEdit={taskToEdit}
           onEditClick={onEditClick}
           deleteTask={deleteTask}
           handleOnChange={completeTask}
         />
 
-        <input
-          type="text"
-          name="editTask"
-          onChange={(e) => setEditText(e.target.value)}
-          value={editText}
-        />
-        <button onClick={() => editTask(taskToEdit, editText)}>💾</button>
+        {taskToEdit && (
+          <>
+            <input
+              type="text"
+              name="editTask"
+              onChange={(e) => setEditText(e.target.value)}
+              value={editText}
+            />
+            <button onClick={() => editTask(taskToEdit, editText)}>💾</button>
+          </>
+        )}
       </div>
     </>
   );
