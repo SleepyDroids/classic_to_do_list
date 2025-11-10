@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import "./index.css";
 
 /*
@@ -14,6 +14,9 @@ Requirements:
 5) New todos should be added to the top of the list visually; the oldest todos should be at the bottom.
 */
 
+// REDUCER
+import reducer from "./reducer.js";
+
 // FILLER DATA *******
 import data from "./data/tasks.js";
 
@@ -24,7 +27,8 @@ import Tasks from "./components/Tasks";
 function App() {
   // STATE MANAGEMENT *******
   const [newTask, setNewTask] = useState("");
-  const [tasks, setTasks] = useState(data);
+  // const [tasks, setTasks] = useState(data);
+  const [tasks, dispatch] = useReducer(reducer, data);
   // setting up the task I want to edit, initiate as null since it is the first render of tasks (taskToEdit will be the specific task's id)
   const [taskToEdit, setTaskToEdit] = useState(null);
   // setting up state to keep track of the editText input (editText will be the e.target.value)
@@ -37,49 +41,57 @@ function App() {
   }
 
   function addTask() {
-    const addNewTask = {
-      id: Date.now(),
-      text: newTask,
-      completed: false,
-    };
+    dispatch({ type: "ADD", newTask });
+    setNewTask("");
 
-    if (newTask.trim() !== "") {
-      setTasks((prev) => [addNewTask, ...prev]);
-      setNewTask("");
-    }
+    // const addNewTask = {
+    //   id: Date.now(),
+    //   text: newTask,
+    //   completed: false,
+    // };
+
+    // if (newTask.trim() !== "") {
+    //   setTasks((prev) => [addNewTask, ...prev]);
+    //   setNewTask("");
+    // }
   }
 
   function editTask(id, newEdit) {
-    const editedTasks = tasks.map((task) => {
-      return task.id == id ? { ...task, text: newEdit } : task;
-    });
+    dispatch({ type: "EDIT", id, newEdit });
+    setEditText("");
+    setTaskToEdit(null);
+    // const editedTasks = tasks.map((task) => {
+    //   return task.id == id ? { ...task, text: newEdit } : task;
+    // });
 
-    if (editText.trim() !== "") {
-      setTasks(editedTasks);
-      setEditText("");
-      setTaskToEdit(null);
-    }
+    // if (editText.trim() !== "") {
+    //   setTasks(editedTasks);
+    //   setEditText("");
+    //   setTaskToEdit(null);
+    // }
+  }
+
+  function deleteTask(id) {
+    dispatch({ type: "DELETE", id });
+    // // use .filter to create a *new* array of tasks
+    // // for each task in the array, only keep it if its id does NOT match the id we passed in
+    // setTasks(tasks.filter((task) => task.id !== id));
+    // // ^ this means: "remove the one task whose id matches the one we clicked on"
+    // // React will then re-render using this updated tasks array
+  }
+
+  function completeTask(id) {
+    dispatch({ type: "COMPLETE", id });
+    // const complete = tasks.map((task) => {
+    //   return task.id == id ? { ...task, completed: !task.completed } : task;
+    // });
+
+    // setTasks(complete);
   }
 
   function onEditClick(id, text) {
     setTaskToEdit(id); // remember which task is being edited
     setEditText(text); // preload the edit input with that specific task's text
-  }
-
-  function deleteTask(id) {
-    // use .filter to create a *new* array of tasks
-    // for each task in the array, only keep it if its id does NOT match the id we passed in
-    setTasks(tasks.filter((task) => task.id !== id));
-    // ^ this means: "remove the one task whose id matches the one we clicked on"
-    // React will then re-render using this updated tasks array
-  }
-
-  function completeTask(id) {
-    const complete = tasks.map((task) => {
-      return task.id == id ? { ...task, completed: !task.completed } : task;
-    });
-
-    setTasks(complete);
   }
 
   // JSX AND ELEMENTS *******

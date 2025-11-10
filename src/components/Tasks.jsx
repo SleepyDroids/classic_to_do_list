@@ -19,7 +19,7 @@ export default function Tasks({
                 checked={t.completed}
                 onChange={() => handleOnChange(t.id)}
               />
-              <span className={t.completed ? "completed" : null}>{t.text}</span>
+              <span className={t.completed ? "text completed" : "text"}>{t.text}</span>
             </label>
             <button
               className="edit-btn"
