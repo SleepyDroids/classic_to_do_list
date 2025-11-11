@@ -25,6 +25,8 @@ export default function reducer(state, action) {
         return state;
       }
     case "EDIT":
+        // State refers to the default data which we need to map over to get and transform the individual tasks
+        // Action.id == id (from function) and same as Action.newEdit (which is the user string from the edit input)
       const editedTasks = state.map((task) => {
         return task.id == action.id ? { ...task, text: action.newEdit } : task;
       });

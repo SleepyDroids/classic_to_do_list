@@ -27,7 +27,6 @@ import Tasks from "./components/Tasks";
 function App() {
   // STATE MANAGEMENT *******
   const [newTask, setNewTask] = useState("");
-  // const [tasks, setTasks] = useState(data);
   const [tasks, dispatch] = useReducer(reducer, data);
   // setting up the task I want to edit, initiate as null since it is the first render of tasks (taskToEdit will be the specific task's id)
   const [taskToEdit, setTaskToEdit] = useState(null);
@@ -57,7 +56,9 @@ function App() {
   }
 
   function editTask(id, newEdit) {
+    // Tells the reducer to select edit as the action type, id and newEdit are apart of that action (data necessary) and need to be passed through to the reducer as well
     dispatch({ type: "EDIT", id, newEdit });
+    // AFTER this function goes through the reducer process, then I can use the set state functions I have to "reset" the forms
     setEditText("");
     setTaskToEdit(null);
     // const editedTasks = tasks.map((task) => {
