@@ -1,20 +1,7 @@
 import { useState, useReducer } from "react";
 import "./index.css";
 
-/*
-Requirements: 
-- List of items that include: 
-1) checkbox to indicate whether or not an item is complete
-2) A delete button to remove the task from the list (can grab items by index? filter?)
-        2a) delete button should be disabled unless the task is complete! 
-3) An "edit" button that replaces the todo string with a text input used to edit the todo.
-        3a) Hint: bind the value of this text input to a piece of state so that it is always accurate, even when first displayed!
-        3b) When this text input is active, the "delete" and "edit" buttons should be hidden, and a "save" button should appear. The "save" button should save any changes made to the todo within the text input.
-4) An input element that creates new todo items and adds them to the list. (Simply add to the list items)
-5) New todos should be added to the top of the list visually; the oldest todos should be at the bottom.
-*/
-
-// REDUCER
+// REDUCER *******
 import reducer from "./reducer.js";
 
 // FILLER DATA *******
@@ -25,7 +12,7 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 
 function App() {
-  // STATE MANAGEMENT *******
+  // COMPONENT STATE MANAGEMENT *******
   const [newTask, setNewTask] = useState("");
   const [tasks, dispatch] = useReducer(reducer, data);
   // setting up the task I want to edit, initiate as null since it is the first render of tasks (taskToEdit will be the specific task's id)
@@ -42,17 +29,6 @@ function App() {
   function addTask() {
     dispatch({ type: "ADD", newTask });
     setNewTask("");
-
-    // const addNewTask = {
-    //   id: Date.now(),
-    //   text: newTask,
-    //   completed: false,
-    // };
-
-    // if (newTask.trim() !== "") {
-    //   setTasks((prev) => [addNewTask, ...prev]);
-    //   setNewTask("");
-    // }
   }
 
   function editTask(id, newEdit) {
@@ -61,33 +37,15 @@ function App() {
     // AFTER this function goes through the reducer process, then I can use the set state functions I have to "reset" the forms
     setEditText("");
     setTaskToEdit(null);
-    // const editedTasks = tasks.map((task) => {
-    //   return task.id == id ? { ...task, text: newEdit } : task;
-    // });
-
-    // if (editText.trim() !== "") {
-    //   setTasks(editedTasks);
-    //   setEditText("");
-    //   setTaskToEdit(null);
-    // }
   }
 
   function deleteTask(id) {
     dispatch({ type: "DELETE", id });
-    // // use .filter to create a *new* array of tasks
-    // // for each task in the array, only keep it if its id does NOT match the id we passed in
-    // setTasks(tasks.filter((task) => task.id !== id));
-    // // ^ this means: "remove the one task whose id matches the one we clicked on"
-    // // React will then re-render using this updated tasks array
+
   }
 
   function completeTask(id) {
     dispatch({ type: "COMPLETE", id });
-    // const complete = tasks.map((task) => {
-    //   return task.id == id ? { ...task, completed: !task.completed } : task;
-    // });
-
-    // setTasks(complete);
   }
 
   function onEditClick(id, text) {
