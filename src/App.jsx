@@ -65,7 +65,7 @@ function App() {
           value={newTask}
           type="text"
         />
-        <button className="addBtn" onClick={addTask}>
+        <button aria-label="Add Task" className="addBtn" onClick={addTask}>
           ➕
         </button>
 
@@ -84,7 +84,12 @@ function App() {
               onChange={(e) => setEditText(e.target.value)}
               value={editText}
             />
-            <button onClick={() => editTask(taskToEdit, editText)}>💾</button>
+            <button
+              aria-label="Save Edit"
+              onClick={() => editTask(taskToEdit, editText)}
+            >
+              💾
+            </button>
           </>
         )}
       </div>

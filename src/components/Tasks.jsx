@@ -11,7 +11,7 @@ export default function Tasks({
       {tasks.map((t) => {
         return (
           <li className="task-item" key={t.id}>
-            {/* <label> */}
+            <label>
               <input
                 type="checkbox"
                 id={t.id}
@@ -19,9 +19,14 @@ export default function Tasks({
                 checked={t.completed}
                 onChange={() => handleOnChange(t.id)}
               />
-              <span className={t.completed ? "completed" : null}>{t.text}</span>
-            {/* </label> */}
+              <span
+                className={t.completed ? "task-text completed" : "task-text"}
+              >
+                {t.text}
+              </span>
+            </label>
             <button
+              aria-label="Edit Task"
               className="edit-btn"
               onClick={() => onEditClick(t.id, t.text)}
             >
@@ -29,6 +34,7 @@ export default function Tasks({
             </button>
             {/*  when this specific button is clicked, call deleteTask and pass in the id for this particular task (t.id) */}
             <button
+              aria-label="Delete Task"
               className="del-btn"
               onClick={() => deleteTask(t.id)}
               disabled={t.completed ? false : true}
