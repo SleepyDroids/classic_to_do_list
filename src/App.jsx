@@ -9,6 +9,7 @@ import data from "./data/tasks.js";
 
 // COMPONENTS *******
 import Header from "./components/Header";
+import Footer from "./components/Footer.jsx";
 import Tasks from "./components/Tasks";
 
 function App() {
@@ -41,7 +42,6 @@ function App() {
 
   function deleteTask(id) {
     dispatch({ type: "DELETE", id });
-
   }
 
   function completeTask(id) {
@@ -56,40 +56,42 @@ function App() {
   // JSX AND ELEMENTS *******
   return (
     <>
+    <div className="container">
       <Header />
-      <div className="container">
-        <input
-          name="addTask"
-          onChange={handleInputChange}
-          placeholder="Enter a task here..."
-          value={newTask}
-          type="text"
-        />
-        <button className="addBtn" onClick={addTask}>
-          ➕
-        </button>
+      <input
+        name="addTask"
+        onChange={handleInputChange}
+        placeholder="Enter a task here..."
+        value={newTask}
+        type="text"
+      />
+      <button className="addBtn" onClick={addTask}>
+        ➕
+      </button>
 
-        <Tasks
-          tasks={tasks}
-          onEditClick={onEditClick}
-          deleteTask={deleteTask}
-          handleOnChange={completeTask}
-        />
+      <Tasks
+        tasks={tasks}
+        onEditClick={onEditClick}
+        deleteTask={deleteTask}
+        handleOnChange={completeTask}
+      />
 
-        {taskToEdit && (
-          <>
-            <input
-              type="text"
-              name="editTask"
-              onChange={(e) => setEditText(e.target.value)}
-              value={editText}
-            />
-            <button onClick={() => editTask(taskToEdit, editText)}>💾</button>
-          </>
-        )}
-      </div>
+      {taskToEdit && (
+        <>
+          <input
+            type="text"
+            name="editTask"
+            onChange={(e) => setEditText(e.target.value)}
+            value={editText}
+          />
+          <button onClick={() => editTask(taskToEdit, editText)}>💾</button>
+        </>
+      )}
+    </div>
+    <Footer />
     </>
   );
+  
 }
 
 export default App;
