@@ -10,8 +10,8 @@ export default function Tasks({
     <ul className="tasks" role="list">
       {tasks.map((t) => {
         return (
-          <li key={t.id}>
-            <label>
+          <li className="task-item" key={t.id}>
+            {/* <label> */}
               <input
                 type="checkbox"
                 id={t.id}
@@ -19,8 +19,8 @@ export default function Tasks({
                 checked={t.completed}
                 onChange={() => handleOnChange(t.id)}
               />
-              <span className={t.completed ? "text completed" : "text"}>{t.text}</span>
-            </label>
+              <span className={t.completed ? "completed" : null}>{t.text}</span>
+            {/* </label> */}
             <button
               className="edit-btn"
               onClick={() => onEditClick(t.id, t.text)}

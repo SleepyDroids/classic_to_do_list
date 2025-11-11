@@ -13,25 +13,26 @@ body {
   font-weight: 400;
   font-style: normal;
   background-color: #e1efe6;
-  display: flex;
-  justify-content: center;
-  align-items: start;
 }
 
 .container {
   margin: 0 auto;
-  margin-inline: auto;
-  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-content: space-around;
+  width: 70%;
 }
 
 header {
+  top: 0;
+  position: sticky;
   width: 100%;
   text-align: center;
-  background-color: #efcb68;
 }
 
 header > h1 {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   padding: 0.8rem;
 }
 
@@ -39,11 +40,11 @@ footer {
   bottom: 0;
   position: fixed;
   z-index: 1;
-
+  width: 100%;
 }
 
 footer > p {
-
+  text-align: center;
   font-size: 0.8rem;
 }
 
@@ -70,10 +71,10 @@ button:disabled {
 input[type="text"] {
   font-family: inherit;
   padding: 0.7rem;
-  width: 400px;
+  min-width: 400px;
 }
 
-li {
+.task-item {
   display: flex;
   align-items: center;
   list-style-type: none;
@@ -81,9 +82,8 @@ li {
   margin: 0.2rem 0;
   font-size: 1.2rem;
   font-weight: 500;
-  width: 600px;
 }
 
-.text {
+:is(span) {
   flex: 1;
 }

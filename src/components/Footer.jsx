@@ -3,8 +3,8 @@ export default function Footer() {
     <footer>
       <p>
         The classic to do list. An honorary rite of passage for any software
-        developer. <br />Coded by{" "}
-        <a href="https://github.com/SleepyDroids">SleepyDroids</a>.
+        developer. Coded by{" "}
+        <a href="https://github.com/SleepyDroids" target="_blank">SleepyDroids</a>.
       </p>
     </footer>
   );
