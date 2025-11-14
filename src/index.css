@@ -131,7 +131,7 @@ input[type="text"] {
 }
 
 a {
-  color: var(--text-color);
+  color: var(--btn-bg);
   text-decoration: none;
 }
 
