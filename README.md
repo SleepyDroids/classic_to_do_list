@@ -1,5 +1,7 @@
 # React To-Do List 💾
 
+[✅ Live Demo on Netlify](https://classic-to-do.netlify.app/)
+
 Anotha classic to-do list application built with **React** and **Vite**.  
 Users can add tasks, mark them as complete, edit existing tasks, and remove tasks they no longer need.
 
